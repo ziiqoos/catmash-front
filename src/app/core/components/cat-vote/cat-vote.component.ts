@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Cat } from '../../models/cat.model';
+import { Cat } from '../../models/Cat.model';
 import { CatService } from '../../services/cat.service';
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
