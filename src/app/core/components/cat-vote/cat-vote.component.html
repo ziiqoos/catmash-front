@@ -1,0 +1,18 @@
+<app-header></app-header>
+<div class="cat-mash">
+  @if (cats.length>0) {
+  <div class="cat-cards">
+    <div class="cat-card">
+      <img [src]="cats[leftIndex].url" [alt]="cats[leftIndex].id" />
+      <button class="vote-button" (click)="upVoteCat(cats[leftIndex].id)">Vote</button>
+    </div>
+    <div class="cat-card">
+      <img [src]="cats[rightIndex].url" [alt]="cats[leftIndex].id" />
+      <button class="vote-button" (click)="upVoteCat(cats[rightIndex].id)">Vote</button>
+    </div>
+  </div>
+  <div class="view-rankings">
+    <button (click)="showRanking()">View Rankings</button>
+  </div>
+  }
+</div>
