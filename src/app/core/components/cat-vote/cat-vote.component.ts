@@ -1,30 +1,16 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Cat } from '../../models/Cat.model';
 import { CatService } from '../../services/cat.service';
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cat-vote',
   templateUrl: './cat-vote.component.html',
-  styleUrls: ['./cat-vote.component.scss'],
-  imports: [HeaderComponent],
-  animations: [
-    trigger('fadeAnimation', [
-      transition(':leave', [
-        style({ opacity: 1 }),
-        animate('500ms', style({ opacity: 0 }))
-      ]),
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('500ms', style({ opacity: 1 }))
-      ])
-    ])
-  ]
+  styleUrls: ['./cat-vote.component.scss']
 })
 export class CatVoteComponent implements OnInit {
   cats: Cat[] = [];
+  gameNumber = 0;
   leftIndex = 0;
   rightIndex = 0;
 
@@ -33,6 +19,7 @@ export class CatVoteComponent implements OnInit {
   ngOnInit() {
     this.catService.getCats().subscribe((cats: Cat[]) => {
       this.cats = cats;
+      this.gameNumber = cats.reduce((accumulator, cat) => accumulator + (cat.score || 0), 0);
       this.selectRandomCats();
     });
   }
@@ -48,6 +35,7 @@ export class CatVoteComponent implements OnInit {
   upVoteCat(catId: string): void {
     this.catService.upVoteCat(catId).subscribe(() => {
       this.selectRandomCats();
+      this.gameNumber++;
     });
   }
 
