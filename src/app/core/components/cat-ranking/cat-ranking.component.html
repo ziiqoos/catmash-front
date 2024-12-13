@@ -1,2 +1,67 @@
-<app-header></app-header>
-<div>Ranks</div>
+<div class="cats-container">
+  @if (cats.length === 0) {
+  <div class="loading">
+    <img [src]="'assets/spinner.svg'" alt="Spinner" />
+  </div>
+  }
+  @else {
+
+  <div class="cards-container">
+    @if (cats[1]) {
+    <!-- Top Cat 2 -->
+    <div class="cat-card top-cat-2">
+      <div class="cat-index-circle silver-background">{{ 2 }}</div>
+      <img [src]="cats[1].url" alt="{{ cats[1].id }}" />
+      <div class="cat-id">Cat {{ cats[1].id }}</div>
+      <div style="margin-bottom: 2rem;" class="cat-score">{{ cats[1].score }} pts</div>
+    </div>
+    }
+
+    <!-- Top Cat 1 -->
+    @if (cats[0]) {
+    <div class="cat-card top-cat-1">
+      <div class="cat-index-circle gold-background">{{ 1 }}</div>
+      <img [src]="cats[0].url" alt="{{ cats[0].id }}" />
+      <div class="cat-id">Cat {{ cats[0].id }}</div>
+      <div style="margin-bottom: 4rem;" class="cat-score">{{ cats[0].score }} pts</div>
+    </div>
+    }
+
+    @if (cats[2]) {
+
+    <!-- Top Cat 3 -->
+    <div class="cat-card top-cat-3">
+      <div class="cat-index-circle bronze-background">{{ 3 }}</div>
+      <img [src]="cats[2].url" alt="{{ cats[2].id }}" />
+      <div class="cat-id">Cat {{ cats[2].id }}</div>
+      <div class="cat-score">{{ cats[2].score }} pts</div>
+    </div>
+    }
+  </div>
+
+  <div class="pagination-section">
+    <div class="paginated-cats">
+      @for (cat of paginatedCats; track $index) {
+      <div class="cat-card">
+        <div class="cat-index-circle orange-background">{{ (currentPage - 1) * 12 + $index + 4 }}</div>
+        <img [src]="cat.url" alt="{{ cat.id }}" />
+        <div class="cat-id">Cat {{ cat.id }}</div>
+        <div class="cat-score">
+          {{ cat.score || 0 }} pts
+        </div>
+      </div>
+      }
+    </div>
+    <div class="paginator">
+      <span class="round-button" (click)="prevPage()" [class.disabled]="currentPage === 1">
+        &lt;
+      </span>
+      <span>Page {{ currentPage }} sur {{ totalPages }}</span>
+      <span class="round-button" (click)="nextPage()" [class.disabled]="currentPage === totalPages">
+        &gt;
+      </span>
+    </div>
+  </div>
+  }
+
+</div>

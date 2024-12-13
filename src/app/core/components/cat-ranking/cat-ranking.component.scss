@@ -1,54 +1,205 @@
-// cat-mash.component.scss
-.cat-mash {
+@use '../../../../theme/palette.scss' as p;
+
+/* General Container */
+.cats-container {
+  padding: 2em;
+}
+
+/* Loading Spinner */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+/* Leaderboard Container */
+.leaderboard-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  justify-content: center;
+  padding: 30px;
+  background-color: map-get(p.$palette, light-gray);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
 
-  .cat-cards {
-    display: flex;
+/* Title */
+.leaderboard-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: map-get(p.$palette, dark-gray);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Top Cats Section */
+.cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2em;
+  padding: 2em;
+  padding-top: 0;
+}
+
+.cat-card {
+  background-color: map-get(p.$palette, white);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+
+  .cat-id {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: map-get(p.$palette, dark-gray);
+    margin-bottom: 10px;
+  }
+
+  .cat-score {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: map-get(p.$palette, orange);
+    margin-bottom: 20px;
+  }
+}
+
+/* Top Cat Styles */
+.top-cat-1 {
+  border: 4px solid map-get(p.$palette, gold);
+  background-color: map-get(p.$palette, soft-yellow);
+}
+
+.top-cat-2 {
+  border: 4px solid map-get(p.$palette, silver);
+  background-color: map-get(p.$palette, light-gray);
+}
+
+.top-cat-3 {
+  border: 4px solid map-get(p.$palette, bronze);
+  background-color: map-get(p.$palette, light-bronze);
+}
+
+/* Paginated Cats */
+.paginated-cats {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 columns for medium screens */
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns for small screens */
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    /* 1 column for very small screens */
+  }
+}
+
+/* Pagination Controls */
+.paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 1em;
+
+  .round-button {
+    display: inline-flex;
     justify-content: center;
-    width: 100%;
-    margin-bottom: 2rem;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ff9800;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 
-    .cat-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0 1rem;
+    &:hover {
+      background-color: #f57c00;
+      transform: scale(1.1);
+    }
 
-      img {
-        width: 400px;
-        height: 400px;
-        object-fit: cover;
-        border-radius: 8px;
-      }
+    &:active {
+      background-color: #e65100;
+      transform: scale(0.95);
+    }
 
-      .vote-button {
-        margin-top: 1rem;
-        padding: 0.75rem 1.5rem;
-        font-size: 1.1rem;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
+    &.disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+      pointer-events: none;
     }
   }
+}
 
-  .view-rankings {
-    position: absolute;
-    bottom: 2rem;
+.cat-index-circle {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: map-get(p.$palette, orange);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border: 2px solid map-get(p.$palette, white);
+}
 
-    button {
-      padding: 0.75rem 1.5rem;
-      font-size: 1.1rem;
-      background-color: #008CBA;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-  }
+.cat-card {
+  position: relative;
+}
+
+.gold-background {
+  background-color: map-get(p.$palette, gold);
+
+}
+
+.silver-background {
+  background-color: map-get(p.$palette, silver);
+
+}
+
+.bronze-background {
+  background-color: map-get(p.$palette, bronze);
+}
+
+.orange-background {
+  background-color: map-get(p.$palette, orange);
 }
