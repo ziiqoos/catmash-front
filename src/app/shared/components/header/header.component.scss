@@ -1,0 +1,17 @@
+@use '../../../../theme/palette.scss' as p;
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: map-get(p.$palette, yellow);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .logo {
+    img {
+      width: 100px; /* Larger logo */
+      height: auto;
+    }
+  }
+}
