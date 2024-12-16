@@ -41,7 +41,7 @@
 
   <div class="pagination-section">
     <div class="paginated-cats">
-      @for (cat of paginatedCats; track $index) {
+      @for (cat of paginatedCats; track cat.id) {
       <div class="cat-card">
         <div class="cat-index-circle orange-background">{{ (currentPage - 1) * 12 + $index + 4 }}</div>
         <img [src]="cat.url" alt="{{ cat.id }}" />

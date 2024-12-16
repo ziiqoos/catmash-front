@@ -1,4 +1,5 @@
 @use '../../../../theme/palette.scss' as p;
+@import '../../../../animations.scss';
 
 .cat-vote-container {
   display: flex;
@@ -12,7 +13,7 @@
   box-sizing: border-box;
 
   .title {
-    color: map-get(p.$palette, orange);
+    color: map-get(p.$palette, primary);
   }
 
   .cats {
@@ -33,7 +34,7 @@
       height: 100%;
       border-radius: 10px;
       overflow: hidden;
-      border: 2px solid map-get(p.$palette, orange);
+      border: 2px solid map-get(p.$palette, primary);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       cursor: pointer;
       transition: transform 0.2s ease-in-out;
@@ -64,14 +65,14 @@
   margin-top: 39px;
   border: none;
   border-radius: 0;
-  background-color: map-get(p.$palette, orange);
+  background-color: map-get(p.$palette, primary);
   color: map-get(p.$palette, black);
   cursor: pointer;
   font-size: 1.2rem;
   font-weight: bold;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  border: 2px solid map-get(p.$palette, orange);
+  border: 2px solid map-get(p.$palette, primary);
   transition: background-color 0.3s ease, color 0.3s ease;
 
   span {
@@ -98,11 +99,10 @@
 }
 
 /* Mobile Devices (portrait) */
-@media (max-width: 599px) {
+@media (max-width: 767px) {
 
   .cat-vote-container {
-    display: flex
-;
+    // display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
@@ -112,7 +112,7 @@
     padding: 20px;
     box-sizing: border-box;
 
-    .cat{
+    .cat {
       overflow: hidden;
       border: 2px solid #FFA500;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -130,17 +130,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     /* width: 100%; */
     /* height: 100%; */
     max-height: 20rem;
   }
 
-  .cat-vote-container{
-    .cats{
+  .cat-vote-container {
+    .cats {
       min-width: 100vw;
       width: 100vw;
-      min-height: 95%;
+      min-height: 70%;
     }
   }
 
@@ -155,35 +155,36 @@
     bottom: 0px;
     padding: 10px;
     margin-top: 39px;
-    background-color: #FFA500;
+    background-color: map-get(p.$palette, primary);
     cursor: pointer;
     width: 100%;
+    height: 10%;
   }
 }
 
 /* Small Tablets (portrait) */
-@media (min-width: 600px) and (max-width: 767px) {
+// @media (min-width: 600px) and (max-width: 767px) {
 
-  .cat-vote-container {
-    flex-direction: column;
-    padding: 20px;
-    height: 400px;
-  }
+//   .cat-vote-container {
+//     flex-direction: column;
+//     padding: 20px;
+//     height: 400px;
+//   }
 
-  .cats {
-    flex-direction: column;
-    align-items: center;
-  }
+//   .cats {
+//     flex-direction: column;
+//     align-items: center;
+//   }
 
-  .cat img {
-    width: 120px;
-    height: 120px;
-  }
+//   .cat img {
+//     width: 120px;
+//     height: 120px;
+//   }
 
-  .rankings-button {
-    font-size: 14px;
-  }
-}
+//   .rankings-button {
+//     font-size: 14px;
+//   }
+// }
 
 /* Tablets (landscape) */
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -274,14 +275,31 @@
   object-fit: cover;
 }
 
-@keyframes pulse {
+.cat {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
 
-  0%,
-  100% {
-    transform: scale(0.5);
-  }
+.cat-container {
+  position: relative;
+  display: inline-block;
+}
 
-  50% {
-    transform: scale(1);
-  }
+.cat img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.plus-one {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 2rem;
+  font-weight: bold;
+  color: map-get(p.$palette, primary);
+  transform: translate(-50%, -50%);
+  animation: fade-move-up 2s ease forwards;
+  pointer-events: none;
 }

@@ -1,11 +1,10 @@
 @use '../../../../theme/palette.scss' as p;
+@import '../../../../animations.scss';
 
-/* General Container */
 .cats-container {
   padding: 2em;
 }
 
-/* Loading Spinner */
 .loading {
   display: flex;
   justify-content: center;
@@ -13,7 +12,6 @@
   height: 200px;
 }
 
-/* Leaderboard Container */
 .leaderboard-container {
   display: flex;
   flex-direction: column;
@@ -25,7 +23,6 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Title */
 .leaderboard-title {
   font-size: 2rem;
   font-weight: 700;
@@ -34,7 +31,6 @@
   text-align: center;
 }
 
-/* Top Cats Section */
 .cards-container {
   display: flex;
   justify-content: center;
@@ -79,12 +75,11 @@
   .cat-score {
     font-size: 1.5rem;
     font-weight: 700;
-    color: map-get(p.$palette, orange);
+    color: map-get(p.$palette, primary);
     margin-bottom: 20px;
   }
 }
 
-/* Top Cat Styles */
 .top-cat-1 {
   border: 4px solid map-get(p.$palette, gold);
   background-color: map-get(p.$palette, soft-yellow);
@@ -100,7 +95,6 @@
   background-color: map-get(p.$palette, light-bronze);
 }
 
-/* Paginated Cats */
 .paginated-cats {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -118,10 +112,26 @@
 
   @media (max-width: 480px) {
     grid-template-columns: 1fr;
-    /* 1 column for very small screens */
   }
 }
 
+.top-cat-1 {
+  @media (max-width: 558px) {
+    order: 1;
+  }
+}
+
+.top-cat-2 {
+  @media (max-width: 558px) {
+    order: 2;
+  }
+}
+
+.top-cat-3 {
+  @media (max-width: 558px) {
+    order: 3;
+  }
+}
 /* Pagination Controls */
 .paginator {
   display: flex;
@@ -171,7 +181,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: map-get(p.$palette, orange);
+  background-color: map-get(p.$palette, primary);
   color: white;
   font-size: 1.2rem;
   font-weight: 700;
@@ -186,20 +196,14 @@
   position: relative;
 }
 
-.gold-background {
-  background-color: map-get(p.$palette, gold);
-
+.top-cat-1 {
+  animation: move-up 1s ease-out forwards;
 }
 
-.silver-background {
-  background-color: map-get(p.$palette, silver);
-
+.top-cat-2 {
+  animation: move-up 1s ease-out forwards, move-left 0.5s ease-out 1s forwards;
 }
 
-.bronze-background {
-  background-color: map-get(p.$palette, bronze);
-}
-
-.orange-background {
-  background-color: map-get(p.$palette, orange);
+.top-cat-3 {
+  animation: move-up 1s ease-out forwards, move-right 0.5s ease-out 1s forwards;
 }

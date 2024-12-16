@@ -13,14 +13,20 @@ export class CatRankingComponent implements OnInit {
   itemsPerPage = 12;
   paginatedCats: Cat[] = [];
   _totalPages = 0;
+  errorMsg: string = '';
+
   constructor(private catService: CatService) { }
 
   ngOnInit() {
-    this.catService.getCats().subscribe((cats: Cat[]) => {
-      this.cats = cats;
-      this.updatePaginatedCats();
+    this.catService.getCats().subscribe({
+      next: (cats: Cat[]) => {
+        this.cats = cats;
+        this.updatePaginatedCats();
+      },
+      error: (msg: string) => {
+        this.errorMsg = msg;
+      }
     });
-
   }
 
   get totalPages() {

@@ -3,32 +3,38 @@
   <div class="cats">
     <!-- Left Cat -->
 
-    <div class="cat" (click)="upVoteCat(cats[leftIndex].id)">
+    <div class="cat" (click)="upVoteCat(cats[leftIndex].id,'left')">
       @if (cats.length > 0) {
-        <img [src]="cats[leftIndex].url" alt="Left Cat" />
+      <img [src]="cats[leftIndex].url" alt="Left Cat" />
+      @if (showPlusOneLeft) {
+      <span class="plus-one">+1</span>
       }
-    @else {
+      }
+      @else {
       <div class="loader">
-        <img [src]="'assets/logo_no_text.png'" alt="Grayscale to Color Loader">
+        <img [src]="'assets/logo_no_text.png'" alt="Loader">
       </div>
-    }
+      }
     </div>
 
     <!-- Right Cat -->
-    <div class="cat" (click)="upVoteCat(cats[rightIndex].id)">
+    <div class="cat" (click)="upVoteCat(cats[rightIndex].id,'right')">
       @if (cats.length > 0) {
-        <img [src]="cats[rightIndex].url" alt="Left Cat" />
+      <img [src]="cats[rightIndex].url" alt="Left Cat" />
+      @if (showPlusOneRight) {
+      <span class="plus-one">+1</span>
       }
-    @else {
+      }
+      @else {
       <div class="loader">
-        <img [src]="'assets/logo_no_text.png'" alt="Grayscale to Color Loader">
+        <img [src]="'assets/logo_no_text.png'" alt="Loader">
       </div>
-    }
+      }
     </div>
   </div>
 
   <!-- Rankings Button -->
-  @if (cats.length >0) {
+  @if (cats.length > 0) {
   <span class="rankings-button" (click)="showRanking()">
     <span>Voir classement</span>
     <span>{{gameNumber}} match{{gameNumber > 1 ? 's' : ''}} joué{{gameNumber > 1 ? 's' : ''}}</span>
