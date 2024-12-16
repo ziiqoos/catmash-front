@@ -14,13 +14,22 @@ export class CatVoteComponent implements OnInit {
   leftIndex = 0;
   rightIndex = 0;
 
+  showPlusOneLeft = false;
+  showPlusOneRight = false;
+  errorMsg: string = '';
+
   constructor(private catService: CatService, private router: Router) { }
 
   ngOnInit() {
-    this.catService.getCats().subscribe((cats: Cat[]) => {
-      this.cats = cats;
-      this.gameNumber = cats.reduce((accumulator, cat) => accumulator + (cat.score || 0), 0);
-      this.selectRandomCats();
+    this.catService.getCats().subscribe({
+      next: (cats: Cat[]) => {
+        this.cats = cats;
+        this.gameNumber = cats.reduce((accumulator, cat) => accumulator + (cat.score || 0), 0);
+        this.selectRandomCats();
+      },
+      error: (error: string) => {
+        this.errorMsg = error;
+      }
     });
   }
 
@@ -32,14 +41,31 @@ export class CatVoteComponent implements OnInit {
     } while (this.leftIndex === this.rightIndex);
   }
 
-  upVoteCat(catId: string): void {
-    this.catService.upVoteCat(catId).subscribe(() => {
-      this.selectRandomCats();
-      this.gameNumber++;
+  upVoteCat(catId: string, position = 'left'): void {
+    this.catService.upVoteCat(catId).subscribe({
+      next: (_): void => {
+        this.showPlusOne(position);
+        this.selectRandomCats();
+        this.gameNumber++;
+      },
+      error: (error): void => {
+        console.log('error', error);
+        this.errorMsg = error;
+      }
     });
   }
 
   showRanking(): void {
     this.router.navigate(['/ranking']);
+  }
+
+  showPlusOne(position: string) {
+    if (position === 'left') {
+      this.showPlusOneLeft = true;
+      setTimeout(() => (this.showPlusOneLeft = false), 1500);
+    } else if (position === 'right') {
+      this.showPlusOneRight = true;
+      setTimeout(() => (this.showPlusOneRight = false), 1500);
+    }
   }
 }

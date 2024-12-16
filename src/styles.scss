@@ -1,4 +1,5 @@
-/* styles.scss */
+@use './theme/palette.scss' as p;
+
 body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -21,4 +22,22 @@ h6 {
 
 .clickable {
   cursor: pointer;
+}
+
+.gold-background {
+  background-color: map-get(p.$palette, gold);
+
+}
+
+.silver-background {
+  background-color: map-get(p.$palette, silver);
+
+}
+
+.bronze-background {
+  background-color: map-get(p.$palette, bronze);
+}
+
+.orange-background {
+  background-color: map-get(p.$palette, primary);
 }
