@@ -11,8 +11,8 @@
 
 ## Features
 The app features are:
- - Vote to choose the cutest cat.
- - Show cat's ranking based on their scores
+ - Vote for the cutest cat.
+ - Show the ranking of cats according to their score
 
 ## Setup
 1. Clone the repository from Github, use command : (you can also download the zip file of the repo)
