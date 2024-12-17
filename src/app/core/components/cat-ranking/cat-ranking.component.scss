@@ -207,3 +207,16 @@
 .top-cat-3 {
   animation: move-up 1s ease-out forwards, move-right 0.5s ease-out 1s forwards;
 }
+
+.gold-background {
+  background-color: map-get(p.$palette, gold);
+
+}
+
+.silver-background {
+  background-color: map-get(p.$palette, silver);
+}
+
+.bronze-background {
+  background-color: map-get(p.$palette, bronze);
+}
