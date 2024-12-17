@@ -17,7 +17,7 @@ The app features are:
 ## Setup
 1. Clone the repository from Github, use command : (you can also download the zip file of the repo)
 
-       git clone https://github.com/ziiqoos/chatmash-front
+       git clone https://github.com/ziiqoos/catmash-front
 
 2. Install the project dependencies, use comman :
 
