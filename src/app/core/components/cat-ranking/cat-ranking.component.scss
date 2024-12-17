@@ -124,6 +124,7 @@
 .top-cat-2 {
   @media (max-width: 558px) {
     order: 2;
+    animation: none;
   }
 }
 
@@ -132,6 +133,7 @@
     order: 3;
   }
 }
+
 /* Pagination Controls */
 .paginator {
   display: flex;
@@ -201,7 +203,9 @@
 }
 
 .top-cat-2 {
-  animation: move-up 1s ease-out forwards, move-left 0.5s ease-out 1s forwards;
+  @media (min-width: 558px) {
+    animation: move-up 1s ease-out forwards, move-left 0.5s ease-out 1s forwards;
+  }
 }
 
 .top-cat-3 {
