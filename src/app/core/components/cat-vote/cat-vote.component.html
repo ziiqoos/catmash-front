@@ -20,7 +20,7 @@
     <!-- Right Cat -->
     <div class="cat" (click)="upVoteCat(cats[rightIndex].id,'right')">
       @if (cats.length > 0) {
-      <img [src]="cats[rightIndex].url" alt="Left Cat" />
+      <img [src]="cats[rightIndex].url" alt="Right Cat" />
       @if (showPlusOneRight) {
       <span class="plus-one">+1</span>
         }
@@ -34,7 +34,7 @@
   </div>
 
   @if (cats.length > 0) {
-  <div>
+  <div class="title-container">
   <h2 class="title">Choose who's cute !</h2>
   </div>
   <span class="rankings-button" (click)="showRanking()">
